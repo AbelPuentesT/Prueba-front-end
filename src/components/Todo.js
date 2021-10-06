@@ -4,7 +4,7 @@ import {FiEdit3} from 'react-icons/fi'
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 
 
-function Todo({todos, completeTodo}) {
+function Todo({todos, completeTodo, removeTodo}) {
     const [edit,setEdit] = useState({
         id:null,
         value:""
@@ -18,8 +18,11 @@ function Todo({todos, completeTodo}) {
                 {todo.text}
             </div>
             <div className="icons">
-                <AiOutlineCloseCircle />
-                <FiEdit3 />
+                <AiOutlineCloseCircle
+                onClick={() => removeTodo(todo.id)}
+                className="delete-icon" />
+                <FiEdit3 onClick={() => setEdit({ id:todo.id, value: todo.text})}
+                className="edit-icon" /> 
 
             </div>
         </div>
