@@ -5,6 +5,7 @@ import TodoForm from './TodoForm'
 function TodoList() {
     const [todos,setTodos] =useState([]);
     
+    //Function Add
     const addTodo = todo => {
         if (!todo.text || /^\s*$/.test(todo.text)) {
           return;
@@ -15,10 +16,22 @@ function TodoList() {
         setTodos(newTodos);        
       };
 
+      //Function update
+      const updateTodo = (todoId, newValue) => {
+        if (!newValue.text || /^\s*$/.test(newValue.text)) {
+          return;
+        }
+        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item))
+        );
+      };
+
+
+
+      //Function Remove
       const removeTodo = id => {
         const removeArr = [...todos].filter(todo => todo.id !== id);
         setTodos(removeArr)
-      }
+      };            
 
       const completeTodo = id => {
         let updatedTodos = todos.map(todo => {
@@ -34,7 +47,11 @@ function TodoList() {
         <div>
             <h1>To Do activities</h1>
             <TodoForm onSubmit={addTodo}/>            
-            {<Todo todos={todos} completeTodo={completeTodo} />}
+            {<Todo todos={todos}
+            completeTodo={completeTodo}
+            removeTodo={removeTodo}
+            updateTodo={updateTodo}
+            />}
         </div>
     )
 }
