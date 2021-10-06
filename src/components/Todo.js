@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import TodoForm from './TodoForm'
+import {FiEdit3} from 'react-icons/fi'
+import {AiOutlineCloseCircle} from 'react-icons/ai'
+
+
 function Todo() {
     const [edit,setEdit] = useState({
         id:null,
@@ -14,6 +18,8 @@ function Todo() {
                 {todo.text}
             </div>
             <div className="icons">
+                <AiOutlineCloseCircle />
+                <FiEdit3 />
 
             </div>
         </div>
